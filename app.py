@@ -18,4 +18,29 @@ db.create_all()
 
 
 @app.route('/api/cupcakes')
-def
+def list_cupcakes():
+    """Get data about all cupcakes"""
+
+
+
+@app.route('api/cupcakes/<int:c_id>')
+def get_cupcake(c_id):
+    """Get data about a single cupcake"""
+
+
+
+@app.route('/api/cupcakes', methods=['POST'])
+def create_cupcake():
+    """Create a cupcake with flavor, size, rating, and image data from the body of the request"""
+
+
+
+@app.route('/api/cupcakes/<int:c_id>', methods=['PATCH'])
+def update_cupcake(c_id):
+    """Update a cupcake with flavor, size, rating, and image data from the body of the request"""
+
+
+
+@app.route('/api/cupcakes/<int:c_id>', methods=['DELETE'])
+def delete_cupcake(c_id):
+    """Delete a cupcake with flavor, size, rating, and image data from the body of the request"""
