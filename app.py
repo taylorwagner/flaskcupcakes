@@ -1,7 +1,7 @@
 """Flask app for Cupcakes"""
 from flask import Flask, render_template, flash, redirect
 from flask_debugtoolbar import DebugToolbarExtension
-from models import connect_db, db, Cupcake
+from models import db, connect_db, Cupcake
 # from forms
 
 app = Flask(__name__)
