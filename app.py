@@ -31,16 +31,16 @@ def get_cupcake(c_id):
 
 @app.route('/api/cupcakes', methods=['POST'])
 def create_cupcake():
-    """Create a cupcake with flavor, size, rating, and image data from the body of the request"""
+    """Create a cupcake"""
 
 
 
 @app.route('/api/cupcakes/<int:c_id>', methods=['PATCH'])
 def update_cupcake(c_id):
-    """Update a cupcake with flavor, size, rating, and image data from the body of the request"""
+    """Update a cupcake"""
 
 
 
 @app.route('/api/cupcakes/<int:c_id>', methods=['DELETE'])
 def delete_cupcake(c_id):
-    """Delete a cupcake with flavor, size, rating, and image data from the body of the request"""
+    """Delete a cupcake"""

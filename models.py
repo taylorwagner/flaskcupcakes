@@ -16,7 +16,7 @@ def connect_db(app):
 
 
 class Cupcake(db.Model):
-    """Description of pets that are potentially available for adoption"""
+    """Cupcake data"""
     __tablename__ = "cupcakes"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
