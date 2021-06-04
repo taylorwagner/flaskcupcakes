@@ -107,3 +107,37 @@ class CupcakeViewsTestCase(TestCase):
             })
 
             self.assertEqual(Cupcake.query.count(), 2)
+
+        # def test_update_cupcake(self): TW
+        # with app.test_client() as client: TW
+        #     url = f"/api/cupcakes/{self.cupcake.id}" TW
+        #     resp = client.patch(url)
+
+        #     self.assertEqual(resp.status_code, 200) TW
+        #     data = resp.json
+        #     self.assertEqual(data, {
+        #         "cupcake": {
+        #             "id": self.cupcake.id,
+        #             "flavor": "TestFlavor",
+        #             "size": "TestSize",
+        #             "rating": 5,
+        #             "image": "http://test.com/cupcake.jpg"
+        #         }
+        #     })
+
+        # def test_delete_cupcake(self): TW
+        # with app.test_client() as client: TW
+        #     url = f"/api/cupcakes/{self.cupcake.id}" TW
+        #     resp = client.delete(url)
+
+        #     self.assertEqual(resp.status_code, 200) TW
+        #     data = resp.json
+        #     self.assertEqual(data, {
+        #         "cupcake": {
+        #             "id": self.cupcake.id,
+        #             "flavor": "TestFlavor",
+        #             "size": "TestSize",
+        #             "rating": 5,
+        #             "image": "http://test.com/cupcake.jpg"
+        #         }
+        #     })
