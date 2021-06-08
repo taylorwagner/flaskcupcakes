@@ -108,36 +108,36 @@ class CupcakeViewsTestCase(TestCase):
 
             self.assertEqual(Cupcake.query.count(), 2)
 
-        # def test_update_cupcake(self): TW
-        # with app.test_client() as client: TW
-        #     url = f"/api/cupcakes/{self.cupcake.id}" TW
-        #     resp = client.patch(url)
+    def test_update_cupcake(self):
+        with app.test_client() as client:
+            url = f"/api/cupcakes/{self.cupcake.id}"
+            resp = client.patch(url)
 
-        #     self.assertEqual(resp.status_code, 200) TW
-        #     data = resp.json
-        #     self.assertEqual(data, {
-        #         "cupcake": {
-        #             "id": self.cupcake.id,
-        #             "flavor": "TestFlavor",
-        #             "size": "TestSize",
-        #             "rating": 5,
-        #             "image": "http://test.com/cupcake.jpg"
-        #         }
-        #     })
+            self.assertEqual(resp.status_code, 200)
+            data = resp.json
+            self.assertEqual(data, {
+                "cupcake": {
+                    "id": self.cupcake.id,
+                    "flavor": self.cupcake.flavor,
+                    "size": self.cupcake.size,
+                    "rating": self.cupcake.rating,
+                    "image": self.cupcake.image
+                }
+            })
 
-        # def test_delete_cupcake(self): TW
-        # with app.test_client() as client: TW
-        #     url = f"/api/cupcakes/{self.cupcake.id}" TW
-        #     resp = client.delete(url)
+    def test_delete_cupcake(self):
+        with app.test_client() as client:
+            url = f"/api/cupcakes/{self.cupcake.id}"
+            resp = client.delete(url)
 
-        #     self.assertEqual(resp.status_code, 200) TW
-        #     data = resp.json
-        #     self.assertEqual(data, {
-        #         "cupcake": {
-        #             "id": self.cupcake.id,
-        #             "flavor": "TestFlavor",
-        #             "size": "TestSize",
-        #             "rating": 5,
-        #             "image": "http://test.com/cupcake.jpg"
-        #         }
-        #     })
+            self.assertEqual(resp.status_code, 200)
+            data = resp.json
+            self.assertNotEqual(data, {
+                "cupcake": {
+                    "id": self.cupcake.id,
+                    "flavor": "TestFlavor",
+                    "size": "TestSize",
+                    "rating": 5,
+                    "image": "http://test.com/cupcake.jpg"
+                }
+            })
