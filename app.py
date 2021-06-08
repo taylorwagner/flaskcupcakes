@@ -24,12 +24,12 @@ def list_cupcakes():
     return jsonify(cupcakes=all_cupcakes)
 
 
-@app.route('api/cupcakes/<int:c_id>')
+@app.route('/api/cupcakes/<int:c_id>')
 def get_cupcake(c_id):
     """Get data about a single cupcake"""
     cupcake = Cupcake.query.get_or_404(c_id)
     return jsonify(cupcake=cupcake.serialize_cupcake())
-    
+
 
 # @app.route('/api/cupcakes', methods=['POST'])
 # def create_cupcake():
