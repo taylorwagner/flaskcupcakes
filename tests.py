@@ -149,15 +149,7 @@ class CupcakeViewsTestCase(TestCase):
 
             self.assertEqual(resp.status_code, 200)
             data = resp.json
-            self.assertNotEqual(data, {
-                "cupcake": {
-                    "id": self.cupcake.id,
-                    "flavor": "TestFlavor",
-                    "size": "TestSize",
-                    "rating": 5,
-                    "image": "http://test.com/cupcake.jpg"
-                }
-            })
+            
             self.assertEqual(data, {"message": "deleted"})
 
             self.assertEqual(Cupcake.query.count(), 0)
