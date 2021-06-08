@@ -1,5 +1,5 @@
 """Flask app for Cupcakes"""
-from flask import Flask, render_template, flash, redirect
+from flask import Flask, render_template, flash, redirect, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Cupcake
 # from forms
@@ -20,27 +20,28 @@ db.create_all()
 @app.route('/api/cupcakes')
 def list_cupcakes():
     """Get data about all cupcakes"""
+    all_cupcakes = [c.serialize_cupcake() for c in Cupcake.query.all()]
+    return jsonify(all_cupcakes)
+
+
+# @app.route('api/cupcakes/<int:c_id>')
+# def get_cupcake(c_id):
+#     """Get data about a single cupcake"""
 
 
 
-@app.route('api/cupcakes/<int:c_id>')
-def get_cupcake(c_id):
-    """Get data about a single cupcake"""
+# @app.route('/api/cupcakes', methods=['POST'])
+# def create_cupcake():
+#     """Create a cupcake"""
 
 
 
-@app.route('/api/cupcakes', methods=['POST'])
-def create_cupcake():
-    """Create a cupcake"""
+# @app.route('/api/cupcakes/<int:c_id>', methods=['PATCH'])
+# def update_cupcake(c_id):
+#     """Update a cupcake"""
 
 
 
-@app.route('/api/cupcakes/<int:c_id>', methods=['PATCH'])
-def update_cupcake(c_id):
-    """Update a cupcake"""
-
-
-
-@app.route('/api/cupcakes/<int:c_id>', methods=['DELETE'])
-def delete_cupcake(c_id):
-    """Delete a cupcake"""
+# @app.route('/api/cupcakes/<int:c_id>', methods=['DELETE'])
+# def delete_cupcake(c_id):
+#     """Delete a cupcake"""
