@@ -21,14 +21,15 @@ db.create_all()
 def list_cupcakes():
     """Get data about all cupcakes"""
     all_cupcakes = [c.serialize_cupcake() for c in Cupcake.query.all()]
-    return jsonify(all_cupcakes)
+    return jsonify(cupcakes=all_cupcakes)
 
 
-# @app.route('api/cupcakes/<int:c_id>')
-# def get_cupcake(c_id):
-#     """Get data about a single cupcake"""
-
-
+@app.route('api/cupcakes/<int:c_id>')
+def get_cupcake(c_id):
+    """Get data about a single cupcake"""
+    cupcake = Cupcake.query.get_or_404(c_id)
+    return jsonify(cupcake=cupcake.serialize_cupcake())
+    
 
 # @app.route('/api/cupcakes', methods=['POST'])
 # def create_cupcake():
