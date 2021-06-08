@@ -84,6 +84,13 @@ class CupcakeViewsTestCase(TestCase):
                 }
             })
 
+    def test_get_cupcake_missing(self):
+        with app.test_client() as client:
+            url = f"/api/cupcakes/99999"
+            resp = client.get(url)
+
+            self.assertEqual(resp.status_code, 404)
+
     def test_create_cupcake(self):
         with app.test_client() as client:
             url = "/api/cupcakes"
@@ -111,19 +118,29 @@ class CupcakeViewsTestCase(TestCase):
     def test_update_cupcake(self):
         with app.test_client() as client:
             url = f"/api/cupcakes/{self.cupcake.id}"
-            resp = client.patch(url)
+            resp = client.patch(url, json=CUPCAKE_DATA_2)
 
             self.assertEqual(resp.status_code, 200)
+
             data = resp.json
             self.assertEqual(data, {
                 "cupcake": {
                     "id": self.cupcake.id,
-                    "flavor": self.cupcake.flavor,
-                    "size": self.cupcake.size,
-                    "rating": self.cupcake.rating,
-                    "image": self.cupcake.image
+                    "flavor": "TestFlavor2",
+                    "size": "TestSize2",
+                    "rating": 10,
+                    "image": "http://test.com/cupcake2.jpg"
                 }
             })
+
+            self.assertEqual(Cupcake.query.count(), 1)
+
+    def test_update_cupcake_missing(self):
+        with app.test_client() as client:
+            url = f"/api/cupcakes/99999"
+            resp = client.patch(url, json=CUPCAKE_DATA_2)
+
+            self.assertEqual(resp.status_code, 404)
 
     def test_delete_cupcake(self):
         with app.test_client() as client:
@@ -141,3 +158,13 @@ class CupcakeViewsTestCase(TestCase):
                     "image": "http://test.com/cupcake.jpg"
                 }
             })
+            self.assertEqual(data, {"message": "deleted"})
+
+            self.assertEqual(Cupcake.query.count(), 0)
+
+    def test_delete_cupcake_missing(self):
+        with app.test_client() as client:
+            url = f"/api/cupcakes/99999"
+            resp = client.delete(url)
+
+            self.assertEqual(resp.status_code, 404)

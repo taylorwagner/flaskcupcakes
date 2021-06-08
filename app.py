@@ -43,13 +43,19 @@ def create_cupcake():
 @app.route('/api/cupcakes/<int:c_id>', methods=['PATCH'])
 def update_cupcake(c_id):
     """Update a cupcake"""
+    data = request.json
+
     cupcake = Cupcake.query.get_or_404(c_id)
-    cupcake.flavor = request.json.get('flavor', cupcake.flavor)
-    cupcake.size = request.json.get('size', cupcake.size)
-    cupcake.rating = request.json.get('rating', cupcake.rating)
-    cupcake.image = request.json.get('image', cupcake.image)
+
+    cupcake.flavor = data["flavor"]
+    cupcake.size = data["size"]
+    cupcake.rating = data["rating"]
+    cupcake.image = data["image"]
+
+    db.session.add(cupcake)
     db.session.commit()
-    return jsonify(cupcake.serialize_cupcake())
+    
+    return jsonify(cupcake=cupcake.serialize_cupcake())
 
 
 @app.route('/api/cupcakes/<int:c_id>', methods=['DELETE'])
