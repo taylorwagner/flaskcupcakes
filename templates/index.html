@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
+    <h1 class="display-1">List of All Cupcakes</h1>
+    <ul>
+        <li></li>
+    </ul>
+</div>
+
 
 <div class="container">
-    <h1 class="display-1">Add a New Cupcake</h1>
+    <h2 class="display-2">Add a New Cupcake</h2>
     <form id="add-cupcake-form" method="POST" novalidate=True>
         {{ form.hidden_tag() }}
       

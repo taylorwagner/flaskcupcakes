@@ -1,5 +1,5 @@
 """Flask app for Cupcakes"""
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, flash, redirect
 from flask.templating import render_template
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Cupcake
@@ -21,7 +21,35 @@ db.create_all()
 @app.route('/')
 def homepage():
     """Should simply have an empty list where cupcakes should appear and a form where new cupcakes can be added."""
-    return render_template('index.html')
+
+    cupcakes = Cupcake.query.all()
+    form = AddNewCupcakeForm()
+
+    return render_template('index.html', cupcakes=cupcakes, form=form)
+
+
+@app.route('/', methods=['GET', 'POST'])
+def add_cupcake():
+    """Add a new cupcake form; handle adding of new cupcake"""
+
+    form = AddNewCupcakeForm()
+
+    if form.validate_on_submit():
+        flavor = form.flavor.data
+        size = form.size.data
+        rating = form.rating.data
+        image = form.image.data
+
+        new_cupcake = Cupcake(flavor=flavor, size=size, rating=rating, image=image)
+
+        db.session.add(new_cupcake)
+        db.session.commit()
+
+        flash(f"Added new cupcake with a flavor of -- {flavor}! Yum!")
+        return redirect('/')
+
+    else:
+        return render_template('index.html', form=form)
 
 
 @app.route('/api/cupcakes')
