@@ -7,11 +7,11 @@ function generateCupcakeHTML(c) {
     <div data-cupcake-id=${c.id}>
     <li>
         ${c.flavor} / ${c.size} / ${c.rating}
-        <button class="delete-button">X</button>
+        <button class="delete-button btn btn-danger">X</button>
     </li>
     <img class="Cupcake-img" src="${c.image}"
-    alt="(no img provided)">
-    </div`;
+    alt="(no image provided)">
+    </div>`;
 }
 
 async function showCupcakes() {
@@ -28,25 +28,25 @@ async function showCupcakes() {
 
 /** handle form for adding new cupcakes */
 
-$("#new-cupcake-form").on("submit", async function (e) {
-    e.preventDefault();
+// $("#new-cupcake-form").on("submit", async function (e) {
+//     e.preventDefault();
   
-    let flavor = $("#form-flavor").val();
-    let rating = $("#form-rating").val();
-    let size = $("#form-size").val();
-    let image = $("#form-image").val();
+//     let flavor = $("#form-flavor").val();
+//     let rating = $("#form-rating").val();
+//     let size = $("#form-size").val();
+//     let image = $("#form-image").val();
 
-    const newCupcakeResponse = await axios.post(`${BASE_URL}/cupcakes`, {
-        flavor,
-        rating,
-        size,
-        image
-    });
+//     const newCupcakeResponse = await axios.post(`${BASE_URL}/cupcakes`, {
+//         flavor,
+//         rating,
+//         size,
+//         image
+//     });
 
-    let newCupcake = $(generateCupcakeHTML(newCupcakeResponse.data.cupcake));
-    $("#all-cupcakes").append(newCupcake);
-    $("#new-cupcake-form").trigger("reset");
-});
+//     let newCupcake = $(generateCupcakeHTML(newCupcakeResponse.data.cupcake));
+//     $("#all-cupcakes").append(newCupcake);
+//     $("#new-cupcake-form").trigger("reset");
+// });
 
 
 /** handle clicking delete: delete cupcake */

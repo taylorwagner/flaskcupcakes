@@ -1,6 +1,5 @@
 """Flask app for Cupcakes"""
 from flask import Flask, jsonify, request, render_template, flash, redirect
-from flask.templating import render_template
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Cupcake
 from forms import AddNewCupcakeForm
