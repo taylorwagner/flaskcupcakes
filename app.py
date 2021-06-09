@@ -22,10 +22,9 @@ db.create_all()
 def homepage():
     """Should simply have an empty list where cupcakes should appear and a form where new cupcakes can be added."""
 
-    cupcakes = Cupcake.query.all()
     form = AddNewCupcakeForm()
 
-    return render_template('index.html', cupcakes=cupcakes, form=form)
+    return render_template('index.html', form=form)
 
 
 @app.route('/', methods=['GET', 'POST'])

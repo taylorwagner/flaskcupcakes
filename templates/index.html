@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h1 class="display-1">List of All Cupcakes</h1>
-    <ul class="all-cupcakes">
+    <ul id="all-cupcakes">
         <li></li>
     </ul>
 </div>
@@ -11,7 +11,7 @@
 
 <div class="container">
     <h2 class="display-2">Add a New Cupcake</h2>
-    <form id="add-cupcake-form" method="POST" novalidate=True>
+    <form id="new-cupcake-form" method="POST" novalidate=True>
         {{ form.hidden_tag() }}
       
         {% for field in form
