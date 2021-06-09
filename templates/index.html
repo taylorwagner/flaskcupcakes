@@ -3,11 +3,6 @@
 {% block content %}
 <div class="container">
     <h1 class="display-1">List of All Cupcakes</h1>
-    
-    {% for msg in get_flashed_messages() %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">{{ msg }}</div>
-    {% endfor %}
-
     <ul id="all-cupcakes">
 
     </ul>
