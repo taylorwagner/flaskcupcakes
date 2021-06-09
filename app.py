@@ -1,5 +1,6 @@
 """Flask app for Cupcakes"""
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
+from flask.templating import render_template
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Cupcake
 from forms import AddNewCupcakeForm
@@ -15,6 +16,12 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 db.create_all()
+
+
+@app.route('/')
+def homepage():
+    """Should simply have an empty list where cupcakes should appear and a form where new cupcakes can be added."""
+    return render_template('index.html')
 
 
 @app.route('/api/cupcakes')
