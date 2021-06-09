@@ -31,10 +31,10 @@ async function showCupcakes() {
 $("#new-cupcake-form").on("submit", async function (e) {
     e.preventDefault();
   
-    let flavor = $("#form-flavor").val();
-    let rating = $("#form-rating").val();
-    let size = $("#form-size").val();
-    let image = $("#form-image").val();
+    let flavor = $("#flavor.form-control").val();
+    let rating = $("#rating.form-control").val();
+    let size = $("#size.form-control").val();
+    let image = $("#image.form-control").val();
 
     const newCupcakeResponse = await axios.post(`${BASE_URL}/cupcakes`, {
         flavor,
